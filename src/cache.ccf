@@ -1,0 +1,18 @@
+# DEFINING CACHE REGIONS FOR PRODUCTDETAILSCACHE
+
+# -------The most basic configuration would be a pure memory cache where every region takes the default values.---------
+
+jcs.region.mvcDetailsCache=DC
+jcs.region.mvcDetailsCache.cacheattributes=org.apache.jcs.engine.CompositeCacheAttributes
+jcs.region.mvcDetailsCache.cacheattributes.MaxObjects=1000
+jcs.region.mvcDetailsCache.cacheattributes.MemoryCacheName=org.apache.jcs.engine.memory.lru.LRUMemoryCache
+
+#------ IF WE WANT TO ADD MEMORY SHRINKING THEN WE CAN ADD THESE LINES ---------------
+
+jcs.region.mvcDetailsCache.cacheattributes.ShrinkerIntervalSeconds=60
+jcs.region.mvcDetailsCache.cacheattributes.MaxSpoolPerRun=500
+jcs.region.mvcDetailsCache.elementattributes=org.apache.jcs.engine.ElementAttributes
+jcs.region.mvcDetailsCache.elementattributes.IsEternal=false
+jcs.region.mvcDetailsCache.cacheattributes.UseMemoryShrinker=true
+jcs.region.mvcDetailsCache.cacheattributes.MaxMemoryIdleTimeSeconds=3600
+

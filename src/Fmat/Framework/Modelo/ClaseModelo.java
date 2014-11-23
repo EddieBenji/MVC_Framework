@@ -81,6 +81,8 @@ public abstract class ClaseModelo {
             }
         }
     }
+    
+    
 
     /**
      * Este método debe ser implementado por el proyecto debido a que la
