@@ -41,6 +41,7 @@ public class ControladorShiro {
      */
     private DefaultSecurityManager sm = new DefaultSecurityManager();
     private Ini ini = new Ini();
+    
 
     //Esta es la sección de nuestro ini donde se almacenan los usuarios y contraseñas
     private Ini.Section usuarios = ini.addSection(IniRealm.USERS_SECTION_NAME);
@@ -81,6 +82,7 @@ public class ControladorShiro {
         String claveEncriptada = encriptar(clave);
         usuarios.put(usuario, claveEncriptada);
         actualizar();
+        System.out.println(usuario+" "+clave);        
     }
 
     /**
@@ -141,6 +143,7 @@ public class ControladorShiro {
     public void logOut() {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
+        usuarios.clear();
     }
 
 }
