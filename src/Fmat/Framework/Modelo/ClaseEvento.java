@@ -75,5 +75,12 @@ public class ClaseEvento {
     public void setNombreEvento(String nombreEvento) {
         this.nombreEvento = nombreEvento;
     }
+    
+    /**
+     *Elimina a todos los miembros que contiene.
+     */
+    public void eliminarObservadores(){
+        miembros.clear();
+    }
 
 }

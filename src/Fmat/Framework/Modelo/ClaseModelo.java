@@ -99,4 +99,15 @@ public abstract class ClaseModelo {
         this.datos = datos;
     }
 
+    /**
+     *Elimina los eventos.
+     */
+    public void eliminarEventos(){
+        eventos.clear();
+        for (ClaseEvento evento : eventos) {
+            evento.eliminarObservadores();
+        }
+        ((ArrayList<ClaseEvento>) datos).clear();
+    }
+    
 }

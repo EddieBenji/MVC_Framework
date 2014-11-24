@@ -1,5 +1,6 @@
 package Fmat.Framework.Controlador;
 
+import Fmat.Framework.Modelo.Cacheable;
 import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 
@@ -28,17 +29,16 @@ public class ControladorCache {
         }
     }
 
-
     /**
-     *Método encargado de agregar la información del objeto a la caché.
+     * Método encargado de agregar la información del objeto a la caché.
+     *
      * @param id es el identificador del objeto que se introducirá a la caché.
      * @param objeto es el objeto que se introducirá a la caché.
      */
-    public void put(int id, Object objeto) {
+    public void put(int id, Cacheable objeto) {
         String ID = String.valueOf(id);
         try {
             jcsCache.put(ID, objeto);
-            
         } catch (CacheException ex) {
             System.out.println("**ERROR!**");
             ex.printStackTrace();
@@ -54,8 +54,20 @@ public class ControladorCache {
      * obtener de la caché.
      * @return el objeto con dicha clave.
      */
-    public Object get(int claveObjeto) {
+    public Cacheable get(int claveObjeto) {
         String id = String.valueOf(claveObjeto);
-        return  jcsCache.get(id);
+        return (Cacheable) jcsCache.get(id);
+    }
+
+    /**
+     * Método encargado de limpiar la caché. (la deja sin datos completamente)
+     */
+    public void limpiarCache() {
+        try {
+            jcsCache.clear();
+        } catch (CacheException ex) {
+            System.out.println("**ERROR!**");
+            ex.printStackTrace();
+        }
     }
 }
